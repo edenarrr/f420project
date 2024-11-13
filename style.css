@@ -2,6 +2,8 @@
     padding-left: 0px;
 } */
 
-#ScriptPart {
-    padding-top: 20;
-}
+
+#sketch-holder {
+    width: 400px; /* Set the width of the sketch area */
+    height: 400px; /* Set the height of the sketch area */
+  }

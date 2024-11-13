@@ -38,7 +38,10 @@ class Point {
   let collisionComputed = false;
   
   function setup() {
-    createCanvas(windowWidth, windowHeight);
+
+    const holder = document.getElementById("sketch-holder");
+    const canvas = createCanvas(holder.offsetWidth, holder.offsetHeight);
+    canvas.parent("sketch-holder"); // Attach canvas to #sketch-holder
     fill("black");
     textSize(20);
   
