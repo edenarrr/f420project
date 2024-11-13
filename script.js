@@ -44,7 +44,7 @@ class Point {
   
     // Button to finish adding points to the current polygon
     buttonFinishPolygon = createButton("Finish Polygon");
-    buttonFinishPolygon.position(30, 85);
+    buttonFinishPolygon.position(30, 120);
     buttonFinishPolygon.mousePressed(function (event) {
         event.stopPropagation(); // Prevents the mousePressed event from propagating to the canvas
         finishPolygon();
@@ -52,12 +52,30 @@ class Point {
   
     // Button to check for collisions
     buttonCheckCollision = createButton("Check Collision");
-    buttonCheckCollision.position(150, 85);
+    buttonCheckCollision.position(150, 120);
     buttonCheckCollision.mousePressed(function (event) {
         event.stopPropagation(); // Prevents the mousePressed event from propagating to the canvas
         checkCollision();
     });
+
+    buttonReset = createButton("Reset");
+    buttonReset.position(270, 120);
+    buttonReset.mousePressed(function (event) {
+        event.stopPropagation(); // Prevents the mousePressed event from propagating to the canvas
+        reset();
+    });
   }
+
+  function reset() {
+      // Global variables
+    polygons = []; // Polygons are expected to be convex
+    currentPolygonPoints = [];
+    collidingPolygons = []; // Stores polygons involved in collision
+    collisionComputed = false;
+  }
+
+
+  
   
   // Finish the current polygon and add it to the list
   function finishPolygon() {
@@ -176,11 +194,12 @@ class Point {
   
     // Display collision result
     fill("black");
+    TextY = 100
     if (collidingPolygons.length > 0) {
-      text("Collision Detected", 30, 50);
+      text("Collision Detected", 30, TextY);
     } else {
         if(collisionComputed) {
-            text("No Collision", 30, 50);
+            text("No Collision", 30, TextY);
         }
     }
   }
