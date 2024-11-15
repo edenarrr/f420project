@@ -15,6 +15,10 @@
         color: gray;
         text-decoration: underline;
       }
+      .active {
+        color:gray;
+        text-decoration: underline;
+      }
     </style>
   </head>
   <body>
@@ -219,10 +223,12 @@
       toggleTitle.addEventListener('click', ()=>{
         if(moreInfo.classList.contains('hidden')){
           moreInfo.classList.remove('hidden');
-          toggleTitle.textContent = 'Dobkin-Kirkpatrick hierarchy'
+          toggleTitle.textContent = 'Dobkin-Kirkpatrick hierarchy';
+          toggleTitle.classList.remove('active');
         } else{
           moreInfo.classList.add('hidden');
-          toggleTitle.textContent = 'Dobkin-Kirkpatrick hierarchy'
+          toggleTitle.textContent = 'Dobkin-Kirkpatrick hierarchy';
+          toggleTitle.classList.add('active');
         }
       });
 
@@ -232,10 +238,12 @@
       toggleBounded.addEventListener('click', ()=>{
         if(boundedInfo.classList.contains('hidden')){
           boundedInfo.classList.remove('hidden');
-          toggleBounded.textContent = 'Bounded version'
+          toggleBounded.textContent = 'Bounded version';
+          toggleBounded.classList.remove('active');
         } else{
           boundedInfo.classList.add('hidden');
-          toggleBounded.textContent = 'Bounded version'
+          toggleBounded.textContent = 'Bounded version';
+          toggleBounded.classList.add('active');
         }
       });
 
@@ -246,9 +254,11 @@
         if(collisionInfo.classList.contains('hidden')){
           collisionInfo.classList.remove('hidden');
           toggleCollision.textContent = 'Collision detection algorithm in O(log^2 n)'
+          toggleCollision.classList.remove('active');
         } else{
           collisionInfo.classList.add('hidden');
           toggleCollision.textContent = 'Collision detection algorithm in O(log^2 n)'
+          toggleCollision.classList.add('active');
         }
       });
 
@@ -259,9 +269,11 @@
         if(polarDualInfo.classList.contains('hidden')){
           polarDualInfo.classList.remove('hidden');
           togglePolarDual.textContent = '3D Polar Dual';
+          togglePolarDual.classList.remove('active');
         } else{
           polarDualInfo.classList.add('hidden');
           togglePolarDual.textContent = '3D Polar Dual';
+          togglePolarDual.classList.add('active');
         }
       });
 
@@ -272,9 +284,11 @@
         if(polarAlgoInfo.classList.contains('hidden')){
           polarAlgoInfo.classList.remove('hidden');
           togglePolarAlgo.textContent = 'O(log n) Polar Dual algorithm for 3D';
+          togglePolarAlgo.classList.remove('active');
         } else{
           polarAlgoInfo.classList.add('hidden');
           togglePolarAlgo.textContent = 'O(log n) Polar Dual algorithm for 3D';
+          togglePolarAlgo.classList.add('active');
         }
       });
 
