@@ -40,3 +40,9 @@ footer a:hover {
     color: #0044cc; 
     text-decoration: underline; 
   }
+
+#footer-ref {
+    list-style-type: none; /* Removes the bullet points */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
+}
