@@ -165,7 +165,10 @@ class Point {
   
   // Mouse click to add a point to the current polygon
   function mousePressed() {
-    currentPolygonPoints.push(new Point(mouseX, mouseY));
+    const holder = document.getElementById("sketch-holder");
+    if(0 <= mouseX && mouseX <= holder.offsetWidth && 0 <= mouseY && mouseY <= holder.offsetHeight){
+      currentPolygonPoints.push(new Point(mouseX, mouseY));
+    }
   }
   
   function draw() {
