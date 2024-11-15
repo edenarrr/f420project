@@ -6,6 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link href="style.css" rel="stylesheet" />
     <title>P5.js Sketch</title>
+    <style>
+      .hidden{
+        display: none;
+      }
+      .show-more {
+        cursor: pointer;
+        color: gray;
+        text-decoration: underline;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -212,7 +222,7 @@
           toggleTitle.textContent = 'Dobkin-Kirkpatrick hierarchy'
         } else{
           moreInfo.classList.add('hidden');
-          toggleTitle.textContent = 'Show Dobkin-Kirkpatrick hierarch'
+          toggleTitle.textContent = 'Dobkin-Kirkpatrick hierarchy'
         }
       });
 
@@ -225,7 +235,7 @@
           toggleBounded.textContent = 'Bounded version'
         } else{
           boundedInfo.classList.add('hidden');
-          toggleBounded.textContent = 'Show Bounded version'
+          toggleBounded.textContent = 'Bounded version'
         }
       });
 
@@ -238,7 +248,7 @@
           toggleCollision.textContent = 'Collision detection algorithm in O(log^2 n)'
         } else{
           collisionInfo.classList.add('hidden');
-          toggleCollision.textContent = 'Show Collision detection algorithm in O(log^2 n)'
+          toggleCollision.textContent = 'Collision detection algorithm in O(log^2 n)'
         }
       });
 
@@ -251,7 +261,7 @@
           togglePolarDual.textContent = '3D Polar Dual';
         } else{
           polarDualInfo.classList.add('hidden');
-          togglePolarDual.textContent = 'Show 3D Polar Dual';
+          togglePolarDual.textContent = '3D Polar Dual';
         }
       });
 
@@ -264,7 +274,7 @@
           togglePolarAlgo.textContent = 'O(log n) Polar Dual algorithm for 3D';
         } else{
           polarAlgoInfo.classList.add('hidden');
-          togglePolarAlgo.textContent = 'Show O(log n) Polar Dual algorithm for 3D';
+          togglePolarAlgo.textContent = 'O(log n) Polar Dual algorithm for 3D';
         }
       });
 
