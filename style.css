@@ -7,3 +7,36 @@
     width: 400px; /* Set the width of the sketch area */
     height: 400px; /* Set the height of the sketch area */
   }
+
+.hidden{
+    display: none;
+  }
+
+.show-more {
+    cursor: pointer;
+    color: gray;
+    text-decoration: underline;
+  }
+
+.active {
+    color:gray;
+    text-decoration: underline;
+  }
+
+footer {
+    font-size: 14px;
+    text-align: center;
+    padding: 20px;
+    background-color: #c3c2c2;
+    color: #333;
+  }
+
+footer a {
+    color: #002951; 
+    text-decoration: none; 
+  }
+
+footer a:hover {
+    color: #0044cc; 
+    text-decoration: underline; 
+  }
