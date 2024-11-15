@@ -24,7 +24,9 @@ function create_shape(points, edges, mesh) {
 }
 
 renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
-document.body.appendChild(renderer.domElement);
+const container = document.getElementById("3d-container");
+container.appendChild(renderer.domElement);
+// document.body.appendChild(renderer.domElement);
 
 // Add a 3D grid helper
 const gridHelper = new THREE.GridHelper(10, 10); // size 10, 10 divisions
