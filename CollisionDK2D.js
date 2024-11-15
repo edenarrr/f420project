@@ -76,9 +76,6 @@ class Point {
     collidingPolygons = []; // Stores polygons involved in collision
     collisionComputed = false;
   }
-
-
-  
   
   // Finish the current polygon and add it to the list
   function finishPolygon() {
@@ -92,38 +89,52 @@ class Point {
   // Check for collision using the DK hierarchy
   function checkCollision() {
     collidingPolygons = [];
-    if (polygons.length < 2) return;
-  
-    for (let i = 0; i < polygons.length; i++) {
-      for (let j = i + 1; j < polygons.length; j++) {
-        if (detectHierarchyCollision(polygons[i], polygons[j])) {
-          collidingPolygons.push(polygons[i], polygons[j]);
-        }
-      }
+    if (polygons.length != 2) return;
+
+    // Pick the largest hierarchy length (between the two polygons) as start level
+    hierarchyLength1 = polygons[0].hierarchy.length
+    hierarchyLength2 = polygons[1].hierarchy.length
+    if(hierarchyLength1 > hierarchyLength2) {
+      level = hierarchyLength1-1
+    }
+    else {
+      level = hierarchyLength2-1
+    }
+    if (detectHierarchyCollision(polygons[0], polygons[1], level)) {
+      collidingPolygons.push(polygons[0], polygons[1]);
     }
     collisionComputed = true
   }
   
   // Recursive function to detect collision using DK hierarchy
-  function detectHierarchyCollision(poly1, poly2, level = 0) {
-    if (level >= poly1.hierarchy.length || level >= poly2.hierarchy.length) {
-      return false;
+  function detectHierarchyCollision(poly1, poly2, level) {
+    // If the hierarchy of one of the polygons is bigger than the other one: compare it to the highest level of the "other one"
+    if (level >= poly1.hierarchy.length) {
+      hull1 = poly1.hierarchy[poly1.hierarchy.length - 1];
     }
-  
-    const hull1 = poly1.hierarchy[level];
-    const hull2 = poly2.hierarchy[level];
-  
+    else{
+      hull1 = poly1.hierarchy[level];
+    }
+    if (level >= poly2.hierarchy.length) {
+      hull2 = poly2.hierarchy[poly2.hierarchy.length - 1];
+    }
+    else {
+      hull2 = poly2.hierarchy[level];
+    }
+    
+    // Stop early if intersection found
     if (isIntersecting(hull1, hull2)) {
-      if (level === 0) {
-        return true; // Collision found at the base level
-      }
-      // Refine check at the next level of detail
-      return detectHierarchyCollision(poly1, poly2, level - 1);
+      return true;
     }
-    return false; // No collision found at this level
+    // If intersection not found, continue for lower level of DK hierarchy
+    else { 
+      if(level === 0) // If it's the full polygon level
+        return false;
+      return detectHierarchyCollision(poly1, poly2, level-1)
+    }
   }
   
-  // Helper function to determine if two convex polygons intersect
+  // Function to determine if two convex polygons intersect
   function isIntersecting(poly1, poly2) {
     return !hasSeparatingAxis(poly1, poly2) && !hasSeparatingAxis(poly2, poly1);
   }
@@ -200,12 +211,13 @@ class Point {
   
     // Display collision result
     fill("black");
-    TextY = 100
+    TextX = 23
+    TextY = 60
     if (collidingPolygons.length > 0) {
-      text("Collision Detected", 30, TextY);
+      text("Collision Detected", TextX, TextY);
     } else {
         if(collisionComputed) {
-            text("No Collision", 30, TextY);
+            text("No Collision", TextX, TextY);
         }
     }
   }
