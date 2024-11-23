@@ -42,7 +42,16 @@ footer a:hover {
   }
 
 #footer-ref {
-    list-style-type: none; /* Removes the bullet points */
-    padding: 0; /* Removes default padding */
-    margin: 0; /* Removes default margin */
+    list-style-type: none;
+    padding: 0; 
+    margin: 0; 
+}
+
+#sphere-3d {
+  position: relative; 
+  width: 60%; 
+  height: 700px;
+  top: 60px;
+  border: 1px solid #ccc;
+  margin-bottom: 120px;
 }
