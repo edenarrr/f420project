@@ -2,6 +2,11 @@
     padding-left: 0px;
 } */
 
+#website-title {
+  text-align: center;
+  font-size: 50px;
+  margin-top: 35px;
+}
 
 #sketch-holder {
     width: 400px; /* Set the width of the sketch area */
@@ -15,11 +20,6 @@
 .show-more {
     cursor: pointer;
     color: gray;
-    text-decoration: underline;
-  }
-
-.active {
-    color:gray;
     text-decoration: underline;
   }
 
@@ -40,18 +40,82 @@ footer a:hover {
     color: #0044cc; 
     text-decoration: underline; 
   }
-
+/* 
 #footer-ref {
     list-style-type: none;
     padding: 0; 
     margin: 0; 
+} */
+
+#dk-3d {
+  border: 1px solid #ccc;
+  margin-bottom: 30px;
 }
 
 #sphere-3d {
   position: relative; 
-  width: 60%; 
-  height: 700px;
-  top: 60px;
+  width: 100%; 
+  height: 600px;
   border: 1px solid #ccc;
-  margin-bottom: 120px;
+  margin-bottom: 100px;
+}
+
+section {
+  display: none;
+}
+section.active {
+  display: block;
+}
+
+nav {
+  display: flex; /* Enables flexbox for the nav container */
+  justify-content: center; /* Centers the buttons horizontally */
+  padding-top: 20px;
+}
+
+/* Buttons at the top of the page */
+nav a {
+  margin: 0 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: white;
+  background-color: #0044cc;
+  border: none; 
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #0056e6;
+  color: #f0f0f0;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 0 20px;
+  text-align: justify;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+#ref-top {
+  margin-top: 55px;
+  margin-bottom: 55px;
 }

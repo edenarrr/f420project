@@ -24,7 +24,7 @@ function create_shape(points, edges, mesh) {
 }
 
 renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
-const container = document.getElementById("3d-container");
+const container = document.getElementById("dk-3d");
 container.appendChild(renderer.domElement);
 // document.body.appendChild(renderer.domElement);
 
