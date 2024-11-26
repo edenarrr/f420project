@@ -115,6 +115,24 @@ body {
   padding: 10px;
 }
 
+button.toggle-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+button.toggle-button:hover{
+  background-color: #0056e6;
+  color: #f0f0f0;
+}
+
 #ref-top {
   margin-top: 55px;
   margin-bottom: 55px;

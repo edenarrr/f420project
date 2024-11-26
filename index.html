@@ -42,7 +42,7 @@
         </div>
       </div>
       <div>
-        <h2 id="toggleTitle"> Dobkin-Kirkpatrick hierarchy</h2> 
+        <h2 id="toggleTitle" class="toggle-button"> Dobkin-Kirkpatrick hierarchy</h2> 
           <div id="moreInfo" class="hidden">
             <p>
               The Dobkin-Kirkpatric (DK) hierarchy for 3D collision detection is a hierarchical 
@@ -83,7 +83,7 @@
               logarithmic queries to be maintained. Higher dimensional construction and storage requires a space of 
               O(n ^⌊d/2⌋+ϵ) for any ϵ>0, which optimises storage without losing query efficiency.
             </p>
-          <h3 id="toggleBounded"> Bounded version</h3>
+          <h3 id="toggleBounded" class="toggle-button"> Bounded version</h3>
             <div id="boundedInfo" class="hidden">
             <p>
               The bounded version of the Dobkin-Kirkpatric hierarchy is a modification of the original hierarchy 
@@ -118,7 +118,7 @@
               O(log^2 n) complexity in the standard hierarchy and to optimise to O(log n) when using the dual polar transformation.
             </p>
           </div>
-          <h3 id="toggleCollision"> Collision detection algorithm in O(log^2 n)</h3>
+          <h3 id="toggleCollision" class="toggle-button"> Collision detection algorithm in O(log^2 n)</h3>
             <div id="collisionInfo" class="hidden">
             <p>
               Organising the data into hierarchical levels allows the number of vertices to be significantly reduced as the hierarchy 
@@ -136,7 +136,7 @@
             </p>
           </div>
           </div>
-        <h2 id="togglePolarDual"> 3D Polar Dual</h2>
+        <h2 id="togglePolarDual" class="toggle-button"> 3D Polar Dual</h2>
           <div id="polarDualInfo" class="hidden">
             <p>
               The polar transformation converts points into planes and vice versa, allowing the geometric properties of 
@@ -170,7 +170,7 @@
               In 3D intersection detection, the dual polar transformation allows a simplified representation of the 
               polyhedra to be used, facilitating the identification of intersections by separation planes in dual space.
             </p>
-          <h3 id="togglePolarAlgo"> O(log n) Polar Dual algorithm for 3D</h3>
+          <h3 id="togglePolarAlgo" class="toggle-button"> O(log n) Polar Dual algorithm for 3D</h3>
             <div id="polarAlgoInfo" class="hidden">
             <p>
               To obtain an algorithm that achieves O(log n) complexity for detecting collisions between polyhedra in 3D, 

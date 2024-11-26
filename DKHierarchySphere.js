@@ -72,6 +72,7 @@ const button = document.createElement('button');
 button.textContent = 'Toggle Sphere';
 button.style.padding = '10px';
 button.style.backgroundColor = '#0077ff';
+button.style.color = 'white';
 button.style.cursor = 'pointer';
 container.appendChild(button);
 // document.body.appendChild(button);
