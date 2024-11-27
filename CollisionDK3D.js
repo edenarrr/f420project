@@ -5,10 +5,18 @@ import { ConvexGeometry } from "three/addons/geometries/ConvexGeometry.js";
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
   75,
-  window.innerWidth / window.innerHeight,
+  (window.innerHeight/2) / (window.innerHeight/2),
   0.1,
   1000
 );
+
+window.addEventListener("resize", () => {
+  var xsize = window.innerHeight / 2;
+  var ysize = window.innerHeight / 2;
+  renderer.setSize(xsize, ysize);
+  camera.aspect = xsize / ysize;
+  camera.updateProjectionMatrix();
+});
 
 const renderer = new THREE.WebGLRenderer();
 
@@ -23,7 +31,7 @@ function create_shape(points, edges, mesh) {
   return shape;
 }
 
-renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
+renderer.setSize(window.innerHeight / 2, window.innerHeight / 2);
 const container = document.getElementById("dk-3d");
 container.appendChild(renderer.domElement);
 // document.body.appendChild(renderer.domElement);

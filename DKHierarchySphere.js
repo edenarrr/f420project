@@ -4,22 +4,30 @@ import { ConvexGeometry } from 'https://cdn.jsdelivr.net/npm/three@0.158.0/examp
 
 // Scene setup
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(75, (window.innerHeight/2) / (window.innerHeight/2), 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setSize(window.innerHeight / 2, window.innerHeight / 2);
 const container = document.getElementById("sphere-3d");
 container.appendChild(renderer.domElement);
 // document.body.appendChild(renderer.domElement);
 
+window.addEventListener("resize", () => {
+  var xsize = window.innerHeight / 2;
+  var ysize = window.innerHeight / 2;
+  renderer.setSize(xsize, ysize);
+  camera.aspect = xsize / ysize;
+  camera.updateProjectionMatrix();
+});
+
 // for interactivity with camera angle
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.dampingFactor = 0.1; 
+controls.dampingFactor = 0.1;
 controls.minDistance = 5; 
 controls.maxDistance = 50;
 
 // creates a sphere
-const sphereRadius = 5;
+const sphereRadius = 2;
 const sphereGeometry = new THREE.SphereGeometry(sphereRadius, 32, 32);
 const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x0077ff, wireframe: true });
 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
@@ -69,13 +77,16 @@ const edges = new THREE.LineSegments(edgesGeometry, convexHullMaterial);
 
 // button to toggle sphere visibility
 const button = document.createElement('button');
+button.className = 'btn btn-primary';
 button.textContent = 'Toggle Sphere';
-button.style.padding = '10px';
-button.style.backgroundColor = '#0077ff';
-button.style.color = 'white';
-button.style.cursor = 'pointer';
+//button.style.padding = '10px';
+//button.style.backgroundColor = '#0077ff';
+//button.style.color = 'white';
+//button.style.cursor = 'pointer';
 container.appendChild(button);
 // document.body.appendChild(button);
+
+
 
 // sphere visibility on button click
 let isSphereVisible = true;
@@ -319,14 +330,20 @@ for (let i = 0; i < independentSet.length; i++) {
   scene.add(sphere);
 }
 
+//function animate() {
+//    requestAnimationFrame(animate);
+//    controls.update(); // Required for damping
+//    const width = container.clientWidth;
+//    const height = container.clientHeight;
+//    renderer.setSize(width / 4, height / 4);
+//    camera.aspect = width / height;
+//    camera.updateProjectionMatrix();
+//    renderer.render(scene, camera);
+//}
+
 function animate() {
-    requestAnimationFrame(animate);
-    controls.update(); // Required for damping
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
 }
 animate();

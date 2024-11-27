@@ -13,11 +13,38 @@
     height: 400px; /* Set the height of the sketch area */
   }
 
+#sphere-3d {
+  display: inline;
+}
+
+
+
+.centeredcontents {
+  flex-direction: row;
+}
+
+.container {
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+    margin: none;
+    /* center content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
 .darker {
-    background-color: #9e9b9b;
+    display: inline-block;
+    background-color: #92ade0;
     border-radius: 10px;
     padding: 20px;
     margin: 20px 0;
+    /* shrink container to content */
+    
+    
+
   }
 
 .hidden{
@@ -115,33 +142,14 @@ td, th {
 
 body {
   font-family: Arial, sans-serif;
-  padding: 0 20px;
   text-align: justify;
   margin: auto;
-  width: 50%;
+  width: 100%;
   padding: 10px;
 }
 
 .carousel-control-prev-icon, .carousel-control-next-icon {
   background-color: #0044cc;
-}
-
-button.toggle-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 15px;
-  margin: 5px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  text-align: center;
-  display: block;
-  width: 100%;
-}
-
-button.toggle-button:hover{
-  background-color: #0056e6;
-  color: #f0f0f0;
 }
 
 #ref-top {

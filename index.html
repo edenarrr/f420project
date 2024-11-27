@@ -16,8 +16,8 @@
 <body>
   <nav>
     <!-- Navigation links -->
-    <a data-target="home">Main</a>
-    <a data-target="references">References</a>
+    <a data-target="home" class="btn btn-primary">Main</a>
+    <a data-target="references" class="btn btn-primary">References</a>
   </nav>
   <section id="home" class="active">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.min.js"></script>
@@ -36,374 +36,359 @@
     <script type="module" src="CollisionDK3D.js"></script>
     <script type="module" src="DKHierarchySphere.js"></script>
     <p id="website-title">3D Collision Detection</p>
-    <div id="carouselExample" class="carousel slide">
-      <div class="carousel-inner darker">
-        <div class="carousel-item active">
-          <div class="card">
-            <div class="card-body ">
-              <h2> Dobkin-Kirkpatrick hierarchy</h2>
-              <div>
-                <p>
-                  The Dobkin-Kirkpatric (DK) hierarchy for 3D collision detection is a hierarchical
-                  structure that allows a polyhedron to be efficiently represented to answer intersection
-                  queries. It is constructed from a polyhedron P in 3D space by successively
-                  removing vertices, producing a series of nested polyhedra of decreasing complexity,
-                  which facilitates collision detection tests.
-                </p>
-                <p>
-                  The DK hierarchy is constructed as a sequence of polyhedra P1, P2, …, Pk, where each
-                  polyhedron Pi +1 is contained in Pi, where P1 = P and the last polyhedron Pk is a
-                  tetrahedron. At each step, the removed vertices form an independent set in the structure,
-                  which means that the removed vertices are not connected to each other, which guarantees a
-                  balanced removal. The height of the hierarchy is O(log n), where n is the number of vertices
-                  in P. This is due to the fact that we remove a significant fraction of vertices at each step,
-                  allowing fast queries.
-                </p>
-                <p>
-                  Each polyhedron in the hierarchy maintains a set of vertices that defines its convexity and
-                  allows its size to be reduced at each level, guaranteeing that the combinatorial complexity
-                  of each level remains O(n), where n is the initial complexity of the polyhedron. In addition,
-                  the structure allows for fast separation queries at each level of the hierarchy, which is critical
-                  for determining whether two polyhedra collide.
-                </p>
-                <p>
-                  To determine whether two 3D processed polyhedra P and Q intersect, we start by constructing
-                  the DK hierarchies of P and Q, which allows us to reduce spatial complexity and ensure an
-                  efficient query. During a query, the algorithm recursively compares the hierarchy levels of
-                  both polyhedra, starting with the complete polyhedron and moving down towards lower complexity
-                  levels. Invariants are maintained to ensure that at each step one of the polyhedra grows while
-                  the other shrinks, facilitating the identification of a separation plane or intersection point.
-                  This approach allows the intersection test to be performed in O(log |P| + log |Q|) time, significantly
-                  improving previous times and establishing optimal performance for this type of query.
-                </p>
-                <p>
-                  The DK hierarchy has also been extended to test intersections in higher dimensional spaces, for which
-                  hierarchies based on ε-nets are constructed, allowing the same efficient vertex reduction scheme and
-                  logarithmic queries to be maintained. Higher dimensional construction and storage requires a space of
-                  O(n ^⌊d/2⌋+ϵ) for any ϵ>0, which optimises storage without losing query efficiency.
-                </p>
+    <div class="container text-center">
+      <div class="row align-items-start">
+        <div class="col">
+          <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner darker">
+              <h2>Algorithm Explanation</h2>
+              <div class="carousel-item active">
+                <div class="card">
+                  <div class="card-body ">
+                    <h2> Dobkin-Kirkpatrick hierarchy</h2>
+                    <div>
+                      <p>
+                        The Dobkin-Kirkpatric (DK) hierarchy for 3D collision detection is a hierarchical
+                        structure that allows a polyhedron to be efficiently represented to answer intersection
+                        queries. It is constructed from a polyhedron P in 3D space by successively
+                        removing vertices, producing a series of nested polyhedra of decreasing complexity,
+                        which facilitates collision detection tests.
+                      </p>
+                      <p>
+                        The DK hierarchy is constructed as a sequence of polyhedra P1, P2, …, Pk, where each
+                        polyhedron Pi +1 is contained in Pi, where P1 = P and the last polyhedron Pk is a
+                        tetrahedron. At each step, the removed vertices form an independent set in the structure,
+                        which means that the removed vertices are not connected to each other, which guarantees a
+                        balanced removal. The height of the hierarchy is O(log n), where n is the number of vertices
+                        in P. This is due to the fact that we remove a significant fraction of vertices at each step,
+                        allowing fast queries.
+                      </p>
+                      <p>
+                        Each polyhedron in the hierarchy maintains a set of vertices that defines its convexity and
+                        allows its size to be reduced at each level, guaranteeing that the combinatorial complexity
+                        of each level remains O(n), where n is the initial complexity of the polyhedron. In addition,
+                        the structure allows for fast separation queries at each level of the hierarchy, which is
+                        critical
+                        for determining whether two polyhedra collide.
+                      </p>
+                      <p>
+                        To determine whether two 3D processed polyhedra P and Q intersect, we start by constructing
+                        the DK hierarchies of P and Q, which allows us to reduce spatial complexity and ensure an
+                        efficient query. During a query, the algorithm recursively compares the hierarchy levels of
+                        both polyhedra, starting with the complete polyhedron and moving down towards lower complexity
+                        levels. Invariants are maintained to ensure that at each step one of the polyhedra grows while
+                        the other shrinks, facilitating the identification of a separation plane or intersection point.
+                        This approach allows the intersection test to be performed in O(log |P| + log |Q|) time,
+                        significantly
+                        improving previous times and establishing optimal performance for this type of query.
+                      </p>
+                      <p>
+                        The DK hierarchy has also been extended to test intersections in higher dimensional spaces, for
+                        which
+                        hierarchies based on ε-nets are constructed, allowing the same efficient vertex reduction scheme
+                        and
+                        logarithmic queries to be maintained. Higher dimensional construction and storage requires a
+                        space of
+                        O(n ^⌊d/2⌋+ϵ) for any ϵ>0, which optimises storage without losing query efficiency.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
+              <div class="carousel-item">
+                <div class="card">
+                  <div class="card-body">
+                    <h3> Bounded version</h3>
+                    <div>
+                      <p>
+                        The bounded version of the Dobkin-Kirkpatric hierarchy is a modification of the original
+                        hierarchy
+                        that attempts to bound the degree of each vertex in the polyhedra at each level of the
+                        hierarchy.
+                        The relevance of limiting the degree comes from the fact that in certain cases the standard DK
+                        hierarchy
+                        can result in vertices with high degrees, which can make some query operations difficult.
+                      </p>
+                      <p>
+                        In the standard DK hierarchy, removing vertices to reduce the complexity of the polyhedron at
+                        each
+                        level
+                        can result in vertices with high degrees, which means that some vertices in the DK hierarchy may
+                        have a
+                        number of neighbours proportional to n, which is inefficient for collision detection.
+                      </p>
+                      <p>
+                        The bounded hierarchy introduces a constant parameter c which limits the maximum degree of
+                        vertices
+                        at
+                        each level of the hierarchy. It starts with the polyhedron P at the top level of the hierarchy
+                        and
+                        selects
+                        a set of independent vertices to be removed to form the next level of the hierarchy. If a vertex
+                        at
+                        any level
+                        has a degree greater than the boundary c, a partition is performed on the neighbours of that
+                        vertex,
+                        splitting
+                        its edges with new vertices until the vertex's degree falls within the boundary, which involves
+                        adding additional
+                        vertices that split the incoming edges into high degree vertices. Once the vertex degrees have
+                        been
+                        set, the
+                        convex hull of the resulting set of vertices is taken to build the next level of the hierarchy.
+                      </p>
+                      <p>
+                        In the BDK hierarchy, except for the initial polyhedron P, all polyhedra in the hierarchy have a
+                        maximum
+                        degree of c, where c is a fixed constant, and like the original DK hierarchy, it has a depth of
+                        O(log n),
+                        which guarantees efficient queries, and the vertices removed at each level form independent
+                        sets,
+                        ensuring
+                        a significant reduction at each step.
+                      </p>
+                      <p>
+                        By limiting the degree of the vertices, it is guaranteed that any search or test operation on
+                        the
+                        neighbours
+                        of a vertex is performed in constant O(1) time, since the number of neighbours is bounded by c.
+                        Each
+                        level of
+                        the hierarchy reduces by an approximately constant fraction of vertices, allowing the query
+                        process
+                        to maintain
+                        O(log^2 n) complexity in the standard hierarchy and to optimise to O(log n) when using the dual
+                        polar transformation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card">
+                  <div class="card-body">
+                    <h3> Collision detection algorithm in O(log^2 n)</h3>
+                    <div>
+                      <p>
+                        Organising the data into hierarchical levels allows the number of vertices to be significantly
+                        reduced as
+                        the hierarchy
+                        descends, making queries efficient and allowing the overall complexity to be O(log^2 n).
+                      </p>
+                      <p>
+                        Each level of comparison between the DK hierarchies of P and Q takes O(log n) time to check
+                        whether
+                        there is
+                        a plane of
+                        separation or whether the two polyhedra intersect at that level. Since there are O(log n) levels
+                        in
+                        each
+                        hierarchy, the
+                        total time to perform the check is O(log n * log n) = O(log^2 n).
+                      </p>
+                      <p>
+                        The complexity O(log^2 n) is the result of the combination of the logarithmic structure of the
+                        DK
+                        hierarchy,
+                        which allows the problem to be reduced to smaller sub-problems at each level, and the efficient
+                        intersection
+                        search at each level, which is performed in O(log n) due to the limited number of vertices at
+                        each
+                        level.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card">
+                  <div class="card-body">
+                    <h2> 3D Polar Dual</h2>
+                    <div>
+                      <p>
+                        The polar transformation converts points into planes and vice versa, allowing the geometric
+                        properties of
+                        polyhedra to be analysed in a dual space that facilitates complex operations such as collision
+                        detection.
+                      </p>
+                      <p>
+                        In a three-dimensional space, given a point x in R^3, its polar is a plane defined as
+                        ρ(x)={y∈R3:
+                        ⟨x,y⟩=1},
+                        where ⟨∗,∗⟩ is the inner product of Euclidean spaces, meaning that each point x is associated
+                        with a
+                        plane in
+                        the dual space, and likewise each plane in the original space corresponds to a point in the dual
+                        space.
+                      </p>
+                      <p>
+                        For a convex polyhedron P in R^3, two possible polarisations are defined. One is ρ0(P), which
+                        represents
+                        the set of all polar planes of the vertices of P and forms a new polyhedron containing the
+                        origin;
+                        and the
+                        other is ρ∞(P), which is used when the polyhedron does not contain the origin and its
+                        dualisation is
+                        based
+                        on planes in the space outside P. The resulting polar polyhedron ρ0(P) has a dual structure,
+                        since
+                        the faces
+                        of one polyhedron correspond to the vertices of another and vice versa.
+                      </p>
+                      <p>
+                        The 3D polar transformation provides several useful results. If a point x is inside a polyhedron
+                        P,
+                        then the polar plane ρ(x) separates the dual polyhedron ρ0(P) in dual space. When two polyhedra
+                        P
+                        and
+                        Q intersect in the original space, their respective duals ρ0(P) and ρ∞(Q) retain properties that
+                        make
+                        it easy to identify their intersection or separation.
+                      </p>
+                      <p>
+                        The polar transformation is the key to the intersection algorithm of the DK hierarchy. The
+                        dualisation
+                        transforms the intersection problem of polyhedra in the original space into a separation problem
+                        in
+                        the
+                        dual space. As it traverses the hierarchy of dual polyhedra, the algorithm alternates between
+                        the
+                        original
+                        space and the dual space, evaluating the existence of separation planes or intersection points.
+                      </p>
+                      <p>
+                        In 3D intersection detection, the dual polar transformation allows a simplified representation
+                        of
+                        the
+                        polyhedra to be used, facilitating the identification of intersections by separation planes in
+                        dual
+                        space.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card">
+                  <div class="card-body">
+                    <h3> O(log n) Polar Dual algorithm for 3D</h3>
+                    <div>
+                      <p>
+                        To obtain an algorithm that achieves O(log n) complexity for detecting collisions between
+                        polyhedra
+                        in 3D,
+                        we rely on the combination of the Dobkin-Kirkpatrick hierarchy with polar dualisation, which
+                        allows
+                        us to
+                        simplify and optimise the intersection query process.
+                      </p>
+                      <p>
+                        For each 3D polyhedron P and Q, we construct its dual polar transformation, which involves
+                        obtaining
+                        the
+                        polyhedra ρ (P) and ρ∞ (P), and ρ (Q) and ρ∞ (Q) in dual space, where faces of a polyhedron
+                        correspond
+                        to vertices in its dual and vice versa.
+                      </p>
+                      <p>
+                        Hierarchies DK are created for P and its dual ρ0(P) and also for Q and its dual ρ0(Q). The DK
+                        hierarchy
+                        allows to organise the polyhedra in a layered structure, where each layer gradually reduces the
+                        complexity
+                        (number of vertices) by O(log n), which facilitates a fast query.
+                      </p>
+                      <p>
+                        To detect whether P and Q intersect, one starts at the highest level of the DK hierarchies of P
+                        and
+                        Q,
+                        where the complete polyhedra are first tested. At each step of the algorithm, one alternates
+                        between
+                        the
+                        primal space (original space of P and Q) and the dual space (ρ0(P) and ρ∞(Q)), maintaining
+                        either a
+                        separation
+                        invariant or an intersection invariant, which allows to discard at each level a significant part
+                        of
+                        the
+                        polyhedra,
+                        either by a separation plane or by confirming the intersection.
+                      </p>
+                      <p>
+                        As for the invariants that we maintain during the algorithm, we have the separation invariant,
+                        which
+                        ensures
+                        that there is a plane separating the planes P and ρ0(Q), or vice versa, which is computed in
+                        constant time
+                        and
+                        allows us to proceed to the next level of the hierarchy. On the other hand, we have the
+                        intersection
+                        invariant,
+                        which guarantees that the polyhedra intersect in the original space if it finds an intersection
+                        in a
+                        plane.
+                      </p>
+                      <p>
+                        The algorithm achieves O(log n) in query time because each level of the DK hierarchy allows to
+                        reduce
+                        the combinatorial complexity of the polyhedra and there are only O(log n) levels. At each level,
+                        the
+                        intersection and separation test operations between the polyhedra or their duals can be
+                        performed in
+                        constant time due to the simplification of the polyhedra at the lower levels.
+                      </p>
+                      <p>
+                        The use of polar duality and DK hierarchies allows the algorithm to achieve an optimal
+                        complexity
+                        of (O(log n)) in the intersection query of two 3D polyhedra. The key is to alternate between the
+                        original and dual space at each level of the hierarchy, using separation invariants and
+                        hierarchical
+                        simplification to discard parts of the polyhedra at each step.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
           </div>
         </div>
-        <div class="carousel-item">
-          <div class="card">
+        <div class="col">
+          <div class="cards">
+          <div class="card darker">
             <div class="card-body">
-              <h3> Bounded version</h3>
+              
               <div>
-                <p>
-                  The bounded version of the Dobkin-Kirkpatric hierarchy is a modification of the original hierarchy
-                  that attempts to bound the degree of each vertex in the polyhedra at each level of the hierarchy.
-                  The relevance of limiting the degree comes from the fact that in certain cases the standard DK
-                  hierarchy
-                  can result in vertices with high degrees, which can make some query operations difficult.
-                </p>
-                <p>
-                  In the standard DK hierarchy, removing vertices to reduce the complexity of the polyhedron at each
-                  level
-                  can result in vertices with high degrees, which means that some vertices in the DK hierarchy may
-                  have a
-                  number of neighbours proportional to n, which is inefficient for collision detection.
-                </p>
-                <p>
-                  The bounded hierarchy introduces a constant parameter c which limits the maximum degree of vertices
-                  at
-                  each level of the hierarchy. It starts with the polyhedron P at the top level of the hierarchy and
-                  selects
-                  a set of independent vertices to be removed to form the next level of the hierarchy. If a vertex at
-                  any level
-                  has a degree greater than the boundary c, a partition is performed on the neighbours of that vertex,
-                  splitting
-                  its edges with new vertices until the vertex's degree falls within the boundary, which involves
-                  adding additional
-                  vertices that split the incoming edges into high degree vertices. Once the vertex degrees have been
-                  set, the
-                  convex hull of the resulting set of vertices is taken to build the next level of the hierarchy.
-                </p>
-                <p>
-                  In the BDK hierarchy, except for the initial polyhedron P, all polyhedra in the hierarchy have a
-                  maximum
-                  degree of c, where c is a fixed constant, and like the original DK hierarchy, it has a depth of
-                  O(log n),
-                  which guarantees efficient queries, and the vertices removed at each level form independent sets,
-                  ensuring
-                  a significant reduction at each step.
-                </p>
-                <p>
-                  By limiting the degree of the vertices, it is guaranteed that any search or test operation on the
-                  neighbours
-                  of a vertex is performed in constant O(1) time, since the number of neighbours is bounded by c. Each
-                  level of
-                  the hierarchy reduces by an approximately constant fraction of vertices, allowing the query process
-                  to maintain
-                  O(log^2 n) complexity in the standard hierarchy and to optimise to O(log n) when using the dual
-                  polar transformation.
-                </p>
+                <h3>On a basic convex polyhedra</h3>
+                <div id="dk-3d">
+                  <input type="range" id="levelSlider" min="0" max="10" step="1">
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="carousel-item">
-          <div class="card">
+          <div class="card darker">
             <div class="card-body">
-              <h3> Collision detection algorithm in O(log^2 n)</h3>
+
               <div>
-                <p>
-                  Organising the data into hierarchical levels allows the number of vertices to be significantly
-                  reduced as
-                  the hierarchy
-                  descends, making queries efficient and allowing the overall complexity to be O(log^2 n).
-                </p>
-                <p>
-                  Each level of comparison between the DK hierarchies of P and Q takes O(log n) time to check whether
-                  there is
-                  a plane of
-                  separation or whether the two polyhedra intersect at that level. Since there are O(log n) levels in
-                  each
-                  hierarchy, the
-                  total time to perform the check is O(log n * log n) = O(log^2 n).
-                </p>
-                <p>
-                  The complexity O(log^2 n) is the result of the combination of the logarithmic structure of the DK
-                  hierarchy,
-                  which allows the problem to be reduced to smaller sub-problems at each level, and the efficient
-                  intersection
-                  search at each level, which is performed in O(log n) due to the limited number of vertices at each
-                  level.
-                </p>
+                <h3>On the convex hull of points on sphere</h3>
+                <div id="sphere-3d">
+                  <input type="range" id="levelSlider2" min="0" max="100" step="1">
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="carousel-item">
-          <div class="card">
-            <div class="card-body">
-              <h2> 3D Polar Dual</h2>
-              <div>
-                <p>
-                  The polar transformation converts points into planes and vice versa, allowing the geometric
-                  properties of
-                  polyhedra to be analysed in a dual space that facilitates complex operations such as collision
-                  detection.
-                </p>
-                <p>
-                  In a three-dimensional space, given a point x in R^3, its polar is a plane defined as ρ(x)={y∈R3:
-                  ⟨x,y⟩=1},
-                  where ⟨∗,∗⟩ is the inner product of Euclidean spaces, meaning that each point x is associated with a
-                  plane in
-                  the dual space, and likewise each plane in the original space corresponds to a point in the dual
-                  space.
-                </p>
-                <p>
-                  For a convex polyhedron P in R^3, two possible polarisations are defined. One is ρ0(P), which
-                  represents
-                  the set of all polar planes of the vertices of P and forms a new polyhedron containing the origin;
-                  and the
-                  other is ρ∞(P), which is used when the polyhedron does not contain the origin and its dualisation is
-                  based
-                  on planes in the space outside P. The resulting polar polyhedron ρ0(P) has a dual structure, since
-                  the faces
-                  of one polyhedron correspond to the vertices of another and vice versa.
-                </p>
-                <p>
-                  The 3D polar transformation provides several useful results. If a point x is inside a polyhedron P,
-                  then the polar plane ρ(x) separates the dual polyhedron ρ0(P) in dual space. When two polyhedra P
-                  and
-                  Q intersect in the original space, their respective duals ρ0(P) and ρ∞(Q) retain properties that
-                  make
-                  it easy to identify their intersection or separation.
-                </p>
-                <p>
-                  The polar transformation is the key to the intersection algorithm of the DK hierarchy. The
-                  dualisation
-                  transforms the intersection problem of polyhedra in the original space into a separation problem in
-                  the
-                  dual space. As it traverses the hierarchy of dual polyhedra, the algorithm alternates between the
-                  original
-                  space and the dual space, evaluating the existence of separation planes or intersection points.
-                </p>
-                <p>
-                  In 3D intersection detection, the dual polar transformation allows a simplified representation of
-                  the
-                  polyhedra to be used, facilitating the identification of intersections by separation planes in dual
-                  space.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="carousel-item">
-          <div class="card">
-            <div class="card-body">
-              <h3> O(log n) Polar Dual algorithm for 3D</h3>
-              <div>
-                <p>
-                  To obtain an algorithm that achieves O(log n) complexity for detecting collisions between polyhedra
-                  in 3D,
-                  we rely on the combination of the Dobkin-Kirkpatrick hierarchy with polar dualisation, which allows
-                  us to
-                  simplify and optimise the intersection query process.
-                </p>
-                <p>
-                  For each 3D polyhedron P and Q, we construct its dual polar transformation, which involves obtaining
-                  the
-                  polyhedra ρ (P) and ρ∞ (P), and ρ (Q) and ρ∞ (Q) in dual space, where faces of a polyhedron
-                  correspond
-                  to vertices in its dual and vice versa.
-                </p>
-                <p>
-                  Hierarchies DK are created for P and its dual ρ0(P) and also for Q and its dual ρ0(Q). The DK
-                  hierarchy
-                  allows to organise the polyhedra in a layered structure, where each layer gradually reduces the
-                  complexity
-                  (number of vertices) by O(log n), which facilitates a fast query.
-                </p>
-                <p>
-                  To detect whether P and Q intersect, one starts at the highest level of the DK hierarchies of P and
-                  Q,
-                  where the complete polyhedra are first tested. At each step of the algorithm, one alternates between
-                  the
-                  primal space (original space of P and Q) and the dual space (ρ0(P) and ρ∞(Q)), maintaining either a
-                  separation
-                  invariant or an intersection invariant, which allows to discard at each level a significant part of
-                  the
-                  polyhedra,
-                  either by a separation plane or by confirming the intersection.
-                </p>
-                <p>
-                  As for the invariants that we maintain during the algorithm, we have the separation invariant, which
-                  ensures
-                  that there is a plane separating the planes P and ρ0(Q), or vice versa, which is computed in
-                  constant time
-                  and
-                  allows us to proceed to the next level of the hierarchy. On the other hand, we have the intersection
-                  invariant,
-                  which guarantees that the polyhedra intersect in the original space if it finds an intersection in a
-                  plane.
-                </p>
-                <p>
-                  The algorithm achieves O(log n) in query time because each level of the DK hierarchy allows to
-                  reduce
-                  the combinatorial complexity of the polyhedra and there are only O(log n) levels. At each level, the
-                  intersection and separation test operations between the polyhedra or their duals can be performed in
-                  constant time due to the simplification of the polyhedra at the lower levels.
-                </p>
-                <p>
-                  The use of polar duality and DK hierarchies allows the algorithm to achieve an optimal complexity
-                  of (O(log n)) in the intersection query of two 3D polyhedra. The key is to alternate between the
-                  original and dual space at each level of the hierarchy, using separation invariants and hierarchical
-                  simplification to discard parts of the polyhedra at each step.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
-
-
-
     </div>
-    <h1>3D visualizations of the DK hierarchy</h1>
-    <div>
-      <h3>On a basic convex polyhedra</h3>
-      <div id="dk-3d">
-        <input type="range" id="levelSlider" min="0" max="10" step="1">
-      </div>
-    </div>
-    <div>
-      <h3>On the convex hull of 100 (random) points on a sphere</h3>
-      <div id="sphere-3d">
-        <input type="range" id="levelSlider2" min="0" max="100" step="1">
-      </div>
-    </div>
-
-    </div>
-
-    <script>
-      // Buttons DK hierarchy
-      const toggleTitle = document.getElementById('toggleTitle');
-      const moreInfo = document.getElementById('moreInfo');
-      toggleTitle.addEventListener('click', () => {
-        if (moreInfo.classList.contains('hidden')) {
-          moreInfo.classList.remove('hidden');
-          toggleTitle.textContent = 'Dobkin-Kirkpatrick hierarchy';
-          toggleTitle.classList.add('active');
-        } else {
-          moreInfo.classList.add('hidden');
-          toggleTitle.textContent = 'Dobkin-Kirkpatrick hierarchy';
-          toggleTitle.classList.remove('active');
-        }
-      });
-
-      //Button Bounded version
-      const toggleBounded = document.getElementById('toggleBounded');
-      const boundedInfo = document.getElementById('boundedInfo');
-      toggleBounded.addEventListener('click', () => {
-        if (boundedInfo.classList.contains('hidden')) {
-          boundedInfo.classList.remove('hidden');
-          toggleBounded.textContent = 'Bounded version';
-          toggleBounded.classList.add('active');
-        } else {
-          boundedInfo.classList.add('hidden');
-          toggleBounded.textContent = 'Bounded version';
-          toggleBounded.classList.remove('active');
-        }
-      });
-
-      //Button Collision detection algorithm
-      const toggleCollision = document.getElementById('toggleCollision');
-      const collisionInfo = document.getElementById('collisionInfo');
-      toggleCollision.addEventListener('click', () => {
-        if (collisionInfo.classList.contains('hidden')) {
-          collisionInfo.classList.remove('hidden');
-          toggleCollision.textContent = 'Collision detection algorithm in O(log^2 n)'
-          toggleCollision.classList.add('active');
-        } else {
-          collisionInfo.classList.add('hidden');
-          toggleCollision.textContent = 'Collision detection algorithm in O(log^2 n)'
-          toggleCollision.classList.remove('active');
-        }
-      });
-
-      //Buttons 3D Polar Dual
-      const togglePolarDual = document.getElementById('togglePolarDual');
-      const polarDualInfo = document.getElementById('polarDualInfo');
-      togglePolarDual.addEventListener('click', () => {
-        if (polarDualInfo.classList.contains('hidden')) {
-          polarDualInfo.classList.remove('hidden');
-          togglePolarDual.textContent = '3D Polar Dual';
-          togglePolarDual.classList.add('active');
-        } else {
-          polarDualInfo.classList.add('hidden');
-          togglePolarDual.textContent = '3D Polar Dual';
-          togglePolarDual.classList.remove('active');
-        }
-      });
-
-      //Button Polar Dual Algorithm
-      const togglePolarAlgo = document.getElementById('togglePolarAlgo');
-      const polarAlgoInfo = document.getElementById('polarAlgoInfo');
-      togglePolarAlgo.addEventListener('click', () => {
-        if (polarAlgoInfo.classList.contains('hidden')) {
-          polarAlgoInfo.classList.remove('hidden');
-          togglePolarAlgo.textContent = 'O(log n) Polar Dual algorithm for 3D';
-          togglePolarAlgo.classList.add('active');
-        } else {
-          polarAlgoInfo.classList.add('hidden');
-          togglePolarAlgo.textContent = 'O(log n) Polar Dual algorithm for 3D';
-          togglePolarAlgo.classList.remove('active');
-        }
-      });
-
-    </script>
   </section>
   <section id="references">
     <div id="ref-top">
