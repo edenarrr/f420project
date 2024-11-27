@@ -122,6 +122,10 @@ body {
   padding: 10px;
 }
 
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: #0044cc;
+}
+
 button.toggle-button {
   background-color: #4CAF50;
   color: white;
